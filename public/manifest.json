@@ -1,0 +1,28 @@
+{
+  "name": "Scope — Interior Design Budget Platform",
+  "short_name": "Scope",
+  "description": "Design the budget as beautifully as the space. Scope helps interior designers create polished client budgets, track every dollar, and keep clients aligned.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "design"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/main-image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

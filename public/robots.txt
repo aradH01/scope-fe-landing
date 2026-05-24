@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow common build & infra paths
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+
+# Sitemap
+Sitemap: https://scope.app/sitemap.xml
+Host: https://scope.app
