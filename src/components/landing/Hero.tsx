@@ -1,11 +1,17 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, ChevronDown, Search, DollarSign, Globe, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
-const HERO_IMAGE = "https://media.base44.com/images/public/69fcac91e267d5a14c43536c/81e09c98c_generated_97f44f7f.png";
+const HERO_IMAGE = "https://media.base44.com/images/public/69fcac91e267d5a14c43536c/17de9e451_generated_image.png";
 
-function BudgetMockup() {
+function ScopesMockup() {
+  const scopes = [
+    { title: 'Full Residence Furnishings', subtitle: 'Ashford Estate', badge: 'Pending Client Review', badgeClass: 'text-[#b8860b] bg-[#fdf6e3]', total: '$265,480', items: '64', updated: '12 minutes ago', clientViewed: 'Client viewed 2 hours ago' },
+    { title: 'Office & Library', subtitle: 'Meridian Residence', badge: 'Client Approved', badgeClass: 'text-[#00a89d] bg-[#eef6f6]', total: '$34,870', items: '14', updated: '3 hours ago' },
+    { title: 'Living, Dining & Primary Suite Refresh', subtitle: 'Crestwood House', badge: 'Draft', badgeClass: 'text-[#666666] bg-[#f5f7f9]', total: '$87,320', items: '31', updated: '1 hour ago' },
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -13,52 +19,71 @@ function BudgetMockup() {
       transition={{ delay: 0.6, duration: 0.8 }}
       className="relative"
     >
-      {/* Glass card mockup */}
-      <div className="bg-background/60 backdrop-blur-2xl border border-border/60 rounded-2xl p-6 shadow-2xl shadow-foreground/5">
-        <div className="flex items-center justify-between mb-5">
-          <div>
-            <p className="font-body text-xs font-medium text-muted-foreground tracking-widest uppercase">Project Budget</p>
-            <p className="font-body text-xl font-semibold text-foreground mt-1">Riverside Villa</p>
+      <div className="bg-white rounded-xl p-5 shadow-2xl shadow-foreground/10 border border-[#e0e4e8]">
+        {/* Header */}
+        <div className="mb-4">
+          <h3 className="font-body text-xl font-bold text-[#1a1a1a]" style={{ letterSpacing: '-0.02em' }}>Scopes</h3>
+          <p className="font-body text-xs text-[#666666] mt-0.5">Manage and track all project scopes</p>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex gap-5 border-b border-[#e0e4e8] mb-4">
+          <span className="font-body text-xs font-semibold text-[#1a1a1a] pb-2 border-b-2 border-[#00a89d] -mb-px">Active</span>
+          <span className="font-body text-xs text-[#666666] pb-2">Archived</span>
+        </div>
+
+        {/* Filter bar */}
+        <div className="flex gap-2 mb-4">
+          <div className="flex items-center gap-1 bg-[#f7f9fc] border border-[#e0e4e8] rounded-md px-2.5 py-1.5">
+            <span className="font-body text-[10px] text-[#666666]">All Statuses</span>
+            <ChevronDown className="w-3 h-3 text-[#666666]" />
           </div>
-          <div className="flex items-center gap-2 bg-accent/10 text-accent px-3 py-1.5 rounded-full">
-            <Check className="w-3.5 h-3.5" />
-            <span className="font-body text-xs font-semibold">Client Approved</span>
+          <div className="flex items-center gap-1 bg-[#f7f9fc] border border-[#e0e4e8] rounded-md px-2.5 py-1.5">
+            <span className="font-body text-[10px] text-[#666666]">All Projects</span>
+            <ChevronDown className="w-3 h-3 text-[#666666]" />
+          </div>
+          <div className="flex items-center gap-1.5 bg-[#f7f9fc] border border-[#e0e4e8] rounded-full px-3 py-1.5 flex-1">
+            <Search className="w-3 h-3 text-[#999999]" />
+            <span className="font-body text-[10px] text-[#999999]">Search scopes...</span>
           </div>
         </div>
 
-        {/* Budget bars */}
-        <div className="space-y-4">
-          {[
-            { label: 'Furniture', pct: 72, amount: '$43,200', color: 'bg-primary' },
-            { label: 'Lighting', pct: 45, amount: '$18,500', color: 'bg-accent' },
-            { label: 'Labor', pct: 88, amount: '$22,100', color: 'bg-primary/70' },
-          ].map((item, i) => (
-            <div key={item.label}>
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="font-body text-sm text-foreground font-medium">{item.label}</span>
-                <span className="font-body text-sm text-muted-foreground">{item.amount}</span>
+        {/* Scope cards */}
+        <div className="space-y-3">
+          {scopes.map(scope => (
+            <div key={scope.title} className="bg-white border border-[#e0e4e8] rounded-lg p-3.5 shadow-sm">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <p className="font-body text-sm font-bold text-[#1a1a1a]">{scope.title}</p>
+                  <p className="font-body text-xs text-[#666666] mt-0.5">{scope.subtitle}</p>
+                </div>
+                <span className={`font-body text-[10px] px-2 py-0.5 rounded-full whitespace-nowrap ${scope.badgeClass}`}>{scope.badge}</span>
               </div>
-              <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                <motion.div
-                  className={`h-full ${item.color} rounded-full`}
-                  initial={{ width: 0 }}
-                  animate={{ width: `${item.pct}%` }}
-                  transition={{ delay: 1 + i * 0.2, duration: 0.8, ease: 'easeOut' }}
-                />
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <DollarSign className="w-3.5 h-3.5 text-[#00a89d]" />
+                    <span className="font-body text-xs text-[#00a89d]">Total Amount</span>
+                  </div>
+                  <span className="font-body text-xs font-bold text-[#1a1a1a]">{scope.total}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5 text-[#00a89d]" />
+                    <span className="font-body text-xs text-[#00a89d]">Items</span>
+                  </div>
+                  <span className="font-body text-xs font-bold text-[#1a1a1a]">{scope.items}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5 mt-3 pt-2.5 border-t border-[#f0f2f5]">
+                <Clock className="w-3 h-3 text-[#999999]" />
+                <span className="font-body text-[10px] text-[#999999]">Updated {scope.updated}</span>
+                {scope.clientViewed && (
+                  <span className="font-body text-[10px] text-[#999999] ml-auto">{scope.clientViewed}</span>
+                )}
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="mt-5 pt-4 border-t border-border/50 flex items-center justify-between">
-          <div>
-            <p className="font-body text-xs text-muted-foreground">Total Budget</p>
-            <p className="font-body text-xl font-semibold text-foreground">$83,800</p>
-          </div>
-          <div className="text-right">
-            <p className="font-body text-xs text-muted-foreground">Remaining</p>
-            <p className="font-body text-xl font-semibold text-accent">$24,300</p>
-          </div>
         </div>
       </div>
     </motion.div>
@@ -72,7 +97,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <img
           src={HERO_IMAGE}
-          alt="Designer's desk with material swatches and budget interface on tablet"
+          alt="Designer's desk with material swatches and fabric samples"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/60" />
@@ -88,22 +113,9 @@ export default function Hero() {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full pt-32 pb-20 lg:pt-40 lg:pb-32">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-6 items-center">
           {/* Left - headline area (7 columns) */}
-          <div className="lg:col-span-7">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center gap-2 bg-primary/8 border border-primary/20 rounded-full px-4 py-1.5 mb-6" style={{ backgroundColor: 'hsl(308 37% 28% / 0.08)' }}>
-                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                <p className="font-body text-xs font-semibold tracking-[0.15em] uppercase text-primary">
-                  Interior Design Budget Platform
-                </p>
-              </div>
-            </motion.div>
-
+          <div className="lg:col-span-6">
             <motion.h1
               className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-[1.05]"
               initial={{ opacity: 0, y: 30 }}
@@ -111,9 +123,9 @@ export default function Hero() {
               transition={{ delay: 0.15, duration: 0.7 }}
               style={{ letterSpacing: '-0.02em' }}
             >
-              Design the Budget
+              Design the Scope
               <br />
-              <span className="italic font-light text-primary">as Beautifully</span>
+              <span className="italic font-light text-accent">as Beautifully</span>
               <br />
               as the Space
             </motion.h1>
@@ -126,8 +138,8 @@ export default function Hero() {
               style={{ lineHeight: '1.6' }}
             >
               Create polished client budgets in minutes, track every dollar with precision,
-              and keep clients aligned at every stage. Scope transforms project budgeting from
-              a friction point into your signature service.
+              and keep clients aligned at every stage. Transform your project budgeting and
+              scope management from a friction point into your signature service.
             </motion.p>
 
             <motion.div
@@ -149,8 +161,8 @@ export default function Hero() {
           </div>
 
           {/* Right - floating interface (5 columns) */}
-          <div className="lg:col-span-5">
-            <BudgetMockup />
+          <div className="lg:col-span-6">
+            <ScopesMockup />
           </div>
         </div>
       </div>

@@ -7,45 +7,45 @@ const MATERIALS_IMAGE = "https://media.base44.com/images/public/69fcac91e267d5a1
 const features = [
   {
     icon: FileText,
-    title: 'Beautiful Budgets, Instantly',
+    title: 'Beautiful Scopes, Instantly',
     description: 'Create polished, professional budgets your clients will actually want to read. Organize by room, category, or phase without needing spreadsheet skills. Demystify your client\'s financial expectations.',
     stats: 'Faster and more reliable than spreadsheets',
   },
   {
     icon: Users,
     title: 'A Shared View, Always',
-    description: 'Your client gets their own portal showing exactly where their investment stands, updated in real time as the project moves forward. No more "can you resend that spreadsheet?"',
+    description: 'Your client gets a personalized view showing exactly where their investment stands, keeping everyone up to date as your projects move forward. No more "can you resend that spreadsheet?"',
     stats: 'Everyone on the same page',
   },
   {
     icon: MessageCircle,
     title: 'Changes Become Conversations',
-    description: 'When something shifts (a product is discontinued, a client upgrades a finish), Scope makes it easy to document it, communicate it, and get sign-off. No awkward surprises at the end.',
+    description: 'When something shifts (a product is discontinued, a client upgrades a finish), Scope makes it easy to document it, communicate it, and get sign-off. Protect your margins by avoiding awkward surprises at the end.',
     stats: 'Fewer end-of-project disputes',
   },
   {
     icon: Eye,
     title: 'See the Whole Picture',
-    description: 'It\'s easy to get lost in the activity of individual items. Regain control and visibility into your project spend versus budget, and make smarter design decisions that fit within remaining budget expectations.',
+    description: 'It\'s easy to get lost in the activity of individual items. Take control and maintain visibility into your actual spend versus budget, and make smarter decisions that fit within budget expectations.',
     stats: 'Stay in complete control',
   },
   {
     icon: Bell,
     title: 'Approvals Without the Chase',
-    description: 'Send budget updates or change requests directly through Scope. Clients review, comment, and approve all in one place with a clear record of what was agreed. Project-level budget clarity leads to smoother proposal release as you continue your routine item-level purchasing flows.',
+    description: 'Send budget updates or change requests directly through Scope. Clients review, comment, and approve all in one place with a clear record of what was agreed. Budget clarity streamlines your downstream proposal and procurement workflows as selections are finalized.',
     stats: 'Clear approval trails',
   },
   {
     icon: Shield,
     title: 'Built Around Your Workflow',
     description: 'Scope doesn\'t replace how you order or manage accounts. It wraps around it. Use your existing purchasing and bookkeeping tools; Scope adds the project-level clarity your clients experience, and keeps you firmly in control.',
-    stats: 'No workflow disruption',
+    stats: 'Workflow enhancement, not disruption',
   },
 ];
 
 export default function FeatureGallery() {
   return (
-    <section id="features" className="relative py-24 lg:py-40">
+    <section id="features" className="relative py-12 lg:py-20">
       <div className="absolute left-[8%] lg:left-[12%] top-0 bottom-0 w-px bg-border/30" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">

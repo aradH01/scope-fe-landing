@@ -1,87 +1,88 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-import { Check, X, ChevronDown, ArrowRight } from 'lucide-react';
+import { Check, ChevronDown, ArrowRight } from 'lucide-react';
 
 const tiers = [
   {
     name: 'Starter',
     price: 'Free',
     period: '',
-    tagline: 'Get to know the power of budget clarity',
+    tagline: 'Get to know the power of scope clarity',
+    priorTier: null,
+    comingSoon: false,
     features: [
-      { text: '1 user seat', included: true },
-      { text: '1 client project', included: true },
-      { text: 'Budget creation & line items', included: true },
-      { text: 'PDF budget exports', included: true },
-      { text: 'Client budget portal (view-only)', included: true },
-      { text: 'Budget templates library', included: false },
-      { text: 'Expense tracking & categorization', included: false },
-      { text: 'Live budget tracking & cost variance', included: false },
-      { text: 'Branded portal with approvals', included: false },
+      '1 active project',
+      '3 scopes per project',
+      '1 user seat',
+      'Scope & budget builder w/ tiered library',
+      'Personalized item library for use across projects',
+      'PDF exports (watermarked)',
+      'Client portal sign-off (initial only)',
     ],
+    addOns: 'Extra projects: $9/mo · Extra user seats: $9/mo',
     cta: 'Get Started Free',
     highlighted: false,
     isFree: true,
   },
   {
-    name: 'Essential',
+    name: 'Foundation',
     price: '$19',
-    period: '/month',
-    tagline: 'Individual access for seamless budget creation and management',
+    period: '/mo',
+    tagline: 'Build scopes and align with clients',
+    priorTier: 'Starter',
+    comingSoon: false,
     features: [
-      { text: '1 user seat', included: true },
-      { text: 'Up to 2 client projects', included: true },
-      { text: 'Budget creation & line items', included: true },
-      { text: 'PDF budget exports', included: true },
-      { text: 'Budget templates library', included: true },
-      { text: 'Expense tracking & categorization', included: true },
-      { text: 'Live budget tracking & cost variance', included: true },
-      { text: 'Client budget portal (view-only)', included: true },
-      { text: 'Branded client portal with approvals', included: false },
-      { text: 'Margin & profitability analytics', included: false },
-      { text: '$9/user/mo for additional projects or users', included: true },
+      '4 active projects',
+      '5 scopes per project',
+      '3 user seats',
+      'Unlimited archived projects',
+      'Watermark-free PDF exports',
+      'Unlimited client portal sign-off',
+      'Reuse rooms & items from past projects',
+      'Your logo & colors on the client portal',
     ],
-    cta: 'Start Free Trial',
-    highlighted: false,
-  },
-  {
-    name: 'Premium',
-    price: '$39',
-    period: '/month',
-    tagline: 'For designers running multiple projects and team-driven budget management',
-    features: [
-      { text: '3 user seats', included: true },
-      { text: 'Up to 3 client projects', included: true },
-      { text: 'Budget creation & line items', included: true },
-      { text: 'PDF budget exports', included: true },
-      { text: 'Budget templates library', included: true },
-      { text: 'Expense tracking & categorization', included: true },
-      { text: 'Live budget tracking & cost variance', included: true },
-      { text: 'Branded client portal with approvals', included: true },
-      { text: 'Margin & profitability analytics', included: false },
-      { text: 'Version history & change tracking', included: false },
-      { text: '$9/user/mo for additional projects or users', included: true },
-    ],
-    cta: 'Start Free Trial',
-    highlighted: false,
-  },
-  {
-    name: 'Studio',
-    price: '$79',
-    period: '/month',
-    tagline: 'Full-capability operations for leading design firms',
-    features: [
-      { text: 'Unlimited user seats', included: true },
-      { text: 'Up to 5 client projects', included: true },
-      { text: 'Branded client portal with approvals', included: true },
-      { text: 'Real-time budget tracking dashboard', included: true },
-      { text: 'Margin & profitability analytics', included: true },
-      { text: 'Version history & change tracking', included: true },
-      { text: '$9/mo per additional client project', included: true },
-    ],
+    addOns: 'Extra projects: $9/mo · Extra user seats: $9/mo',
     cta: 'Start Free Trial',
     highlighted: true,
+  },
+  {
+    name: 'Plus',
+    price: '$49',
+    period: '/mo',
+    tagline: 'Track and deliver with full client collaboration',
+    priorTier: 'Foundation',
+    comingSoon: true,
+    features: [
+      '10 active projects',
+      'Unlimited scopes per project',
+      '10 user seats',
+      'Actual item cost inputs and tracking',
+      'Live actuals vs. budget variance',
+      'Progress scopes for ongoing client awareness & approval',
+      'Approved version history & restore',
+      'Stay organized with 10-stage item status tracking',
+    ],
+    addOns: 'Extra projects: $9/mo · Extra user seats: $9/mo',
+    cta: 'Start Building with Foundation',
+    highlighted: false,
+  },
+  {
+    name: 'Pro',
+    price: '$99',
+    period: '/mo',
+    tagline: 'Studio-scale operations for leading design firms',
+    priorTier: 'Plus',
+    comingSoon: true,
+    features: [
+      '25 active projects',
+      'Unlimited user seats',
+      'White-label portal',
+      'Portfolio view & project merge',
+    ],
+    addOns: 'Extra projects: $9/mo · Extra user seats: $9/mo',
+    cta: 'Start Building with Foundation',
+    highlighted: false,
   },
 ];
 
@@ -98,10 +99,7 @@ function TierCard({ tier, index }) {
         tier.highlighted
           ? 'border-primary/30 bg-background shadow-xl shadow-primary/5'
           : 'border-border/50 bg-background/60 backdrop-blur-xl'
-      }`}
-      style={tier.highlighted ? {
-        backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238C7E6A' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-      } : {}}
+      } ${tier.comingSoon ? 'opacity-95' : ''}`}
     >
       {tier.highlighted && (
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
@@ -119,6 +117,11 @@ function TierCard({ tier, index }) {
               {tier.highlighted && (
                 <span className="font-body text-xs font-semibold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
                   Recommended
+                </span>
+              )}
+              {tier.comingSoon && (
+                <span className="font-body text-xs font-semibold text-accent bg-accent/10 px-2.5 py-1 rounded-full">
+                  Coming Soon
                 </span>
               )}
             </div>
@@ -148,20 +151,21 @@ function TierCard({ tier, index }) {
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="px-6 lg:px-8 pb-8 border-t border-border/40 pt-4">
-              <div className="grid sm:grid-cols-2 gap-3 mt-2">
+            <div className="px-6 lg:px-8 pb-8 border-t border-border/40 pt-5">
+              <p className="font-body text-xs font-semibold tracking-[0.15em] uppercase text-primary mb-4">
+                {tier.priorTier ? `Everything in ${tier.priorTier}, plus:` : "What's included:"}
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3">
                 {tier.features.map(feat => (
-                  <div key={feat.text} className="flex items-start gap-2.5">
-                    {feat.included
-                      ? <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                      : <X className="w-4 h-4 text-muted-foreground/50 mt-0.5 flex-shrink-0" />
-                    }
-                    <span className={`font-body text-sm ${feat.included ? 'text-foreground' : 'text-muted-foreground/60'}`}>
-                      {feat.text}
-                    </span>
+                  <div key={feat} className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                    <span className="font-body text-sm text-foreground">{feat}</span>
                   </div>
                 ))}
               </div>
+              {tier.addOns && (
+                <p className="font-body text-xs text-muted-foreground mt-5 italic">{tier.addOns}</p>
+              )}
               <div className="mt-8">
                 <Button
                   className={`font-body text-sm font-medium rounded-full px-8 h-12 ${
@@ -184,7 +188,7 @@ function TierCard({ tier, index }) {
 
 export default function PricingTiers() {
   return (
-    <section id="pricing" className="relative py-24 lg:py-40">
+    <section id="pricing" className="relative py-12 lg:py-20">
       <div className="absolute left-[8%] lg:left-[12%] top-0 bottom-0 w-px bg-border/30" />
 
       <div className="max-w-4xl mx-auto px-6 lg:px-10">
@@ -200,11 +204,10 @@ export default function PricingTiers() {
           </p>
           <h2 className="font-display text-4xl md:text-5xl font-semibold text-foreground leading-tight" style={{ letterSpacing: '-0.02em' }}>
             Transparent Tiers,{' '}
-            <span className="italic font-light text-primary">No Surprises</span>
+            <span className="italic font-light text-accent">No Surprises</span>
           </h2>
           <p className="font-body text-lg text-muted-foreground mt-6 leading-relaxed" style={{ lineHeight: '1.6' }}>
-            Start free and scale as your firm grows. Paid tiers include a 14-day
-            free trial with full access—no credit card required.
+            Start free and scale as your firm grows. Each tier builds on the last. Paid plans include a 14-day free trial with full access, no credit card required.
           </p>
         </motion.div>
 
